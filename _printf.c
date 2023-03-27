@@ -27,6 +27,8 @@ int _printf(const char *format, ...)
 			putchar(*str1);
 			str1++;
 		}
+		if( *str1 == '\0') 
+			return;
 		str1++;
 
 		if (*str1 == 'c')
