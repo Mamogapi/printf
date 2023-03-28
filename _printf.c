@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(pnt, format);
-	num_char = conv_spc(format, func, pnt);
+	num_char = con_spc(format, func, pnt);
 	va_end(pnt);
 	return (num_char);
 }

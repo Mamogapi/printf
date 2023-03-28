@@ -19,7 +19,7 @@ typedef struct dispatch_t
 } dispatch;
 
 int _printf(const char *format, ...);
-int conv_spc(const char *format, dispatch func[], va_list pnt);
+int con_spc(const char *format, dispatch func[], va_list pnt);
 int putchar_c(char);
 int conv_char(va_list);
 int conv_str(va_list);

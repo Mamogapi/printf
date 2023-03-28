@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * val_check - check for hex and HEX
+ * val_hex - check for hex and HEX
  * @num: int number
  * @x: char variable
  * Return: Ascii
  */
 
-int val_check(int num, char x)
+int val_hex(int num, char x)
 {
 	char *hex = "abcdef";
 
@@ -122,7 +122,7 @@ int conv_HEX(va_list pnt)
 		return (-1);
 	for (x = 0; y > 0; x++)
 	{
-		z = y % 16
+		z = y % 16;
 		if (z > 9)
 		{
 			z = val_hex(z, 'X');
@@ -159,8 +159,8 @@ int conv_bin(va_list pnt)
 		return (putchar_c('0'));
 	if (y < 1)
 		return (-1);
-	x = print_num(y, 2);
-	num = malloc(sizeof(char) * x + 1);
+	z = print_num(y, 2);
+	num = malloc(sizeof(char) * z + 1);
 	if (num == NULL)
 		return (-1);
 

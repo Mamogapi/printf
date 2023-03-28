@@ -24,7 +24,7 @@ int conv_char(va_list pnt)
 
 	w = va_arg(pnt, int);
 
-	purchar_c(w);
+	putchar_c(w);
 	return (1);
 }
 
@@ -45,7 +45,7 @@ int conv_str(va_list pnt)
 	{
 		str = "(null)";
 	}
-	for (x = 0; str[x] = '\0'; x++)
+	for (x = 0; str[x] != '\0'; x++)
 		putchar_c(str[x]);
 	return (x);
 }

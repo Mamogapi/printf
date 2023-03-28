@@ -17,7 +17,7 @@ char *rev_str(char *s)
 
 	for (x = 0; x < y; x++)
 	{
-		b--;
+		y--;
 		temp = s[x];
 		s[x] = s[y];
 		s[y] = temp;
