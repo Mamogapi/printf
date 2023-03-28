@@ -6,42 +6,38 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-typedef int (*dispatch_f)(const char *format, va_list pnt, int x);
+/**
+ * struct dispatch_t - function dispatch
+ * @op: operator
+ * @f: function
+ */
 
-static dispatch_f const dispatch[256] = {
-
-	['c'] = conv_char,
-	['s'] = conv_str,
-	['%'] = conv_perc,
-	['d'] = conv_int,
-	['i'] = conv_int,
-	['b'] = conv_bin,
-	['r'] = conv_rev,
-	['R'] = conv_rot,
-	['u'] = unsign_int,
-	['o'] = conv_oct,
-	['x'] = conv_hex,
-	['X'] = conv_HEX,
-	[NULL] =  NULL
-};
+typedef struct dispatch_t
+{
+	char *op;
+	int (*f)(va_list);
+} dispatch;
 
 int _printf(const char *format, ...);
-int conv_spc(const char *format, va_list pnt, int);
-int conv_char(const char *format, va_list pnt, int);
-int conv_str(const char *format, va_list pnt, int);
-int conv_int(const char *format, va_list pnt, int);
-int conv_bin(const char *format, va_list pnt, int);
-int conv_rev(const char *format, va_list pnt, int);
-int conv_rot(const char *format, va_list pnt, int);
-int unsign_int(const char *format, va_list pnt, int);
-int conv_oct(const char *format, va_list pnt, int);
-int conv_hex(const char *format, va_list pnt, int);
-int conv_HEX(const char *format, va_list pnt, int);
-int putchar_c(int);
-int _printf(const char *format, ...);
-int con_spc(const char *format, va_list pnt, int x);
-int print_num(unsigned long long, unsigned int, const char *);
+int conv_spc(const char *format, dispatch func[], va_list pnt);
+int putchar_c(char);
+int conv_char(va_list);
+int conv_str(va_list);
+int conv_perc(va_list);
+int conv_int(va_list);
+int print_no(va_list);
+int conv_bin(va_list);
+int conv_rev(va_list);
+int conv_rot(va_list);
+int unsign_int(va_list);
+int conv_oct(va_list);
+int conv_hex(va_list);
+int conv_HEX(va_list);
+
+
+unsigned int print_num(unsigned int, int);
 char *rev_str(char *);
+void putchar_n(char *);
+int print_unsign(unsigned int);
 
 #endif /* _main_h */
-

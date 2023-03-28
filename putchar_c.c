@@ -2,16 +2,12 @@
 
 /**
  * putchar_c - writes the charaters
- * @c: integer variable
+ * @c: charactor variable
  *
  * Return: integer
  */
 
-int putchar_c(int c)
+int putchar_c(char c)
 {
-	char a[1];
-
-	a[0] = (char)c;
-
-	return (write(0, a, 1));
+	return (write(1, &c, 1));
 }

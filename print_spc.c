@@ -3,7 +3,6 @@
 /**
  * conv_perc - print character
  * @pnt: va_list
- *
  * Return: number of the charater to be printed
  */
 
@@ -15,72 +14,72 @@ int conv_perc(__attribute__((unused))va_list pnt)
 
 /**
  * conv_char - print char
- * @format: string variable
  * @pnt: va_list
- * @x: integer value
  * Return: integer value
  */
 
-int conv_char(const char *format, va_list pnt, int x)
+int conv_char(va_list pnt)
 {
 	int w;
 
 	w = va_arg(pnt, int);
 
 	purchar_c(w);
-	return (conv_spc(format, pnt, x + 1));
+	return (1);
 }
 
 /**
  * conv_str - print string
- * @format: string variable
  * @pnt: va_list
- * @x: integer value
  * Return: integer value
  */
 
-int conv_str(const char *format, va_list pnt, int x)
+int conv_str(va_list pnt)
 {
-	const char *str;
+	char *str;
+	int x;
 
-	str = va_arg(pnt, const char *);
+	str = va_arg(pnt, char *);
 
 	if (str == NULL)
 	{
 		str = "(null)";
 	}
-	while (*str)
-	{
-		putchar_c(*s++);
-		x++;
-	}
-	return (conv_spc(format, pnt, x));
+	for (x = 0; str[x] = '\0'; x++)
+		putchar_c(str[x]);
+	return (x);
 }
 
 /**
  * conv_int - print decimal
- * @format: string variable
  * @pnt: va_list
- * @x: integer value
  * Return: integer value
  */
 
-int conv_int(const char *format, va_list pnt, int x)
+int conv_int(va_list pnt)
 {
-	int w = va_arg(pnt, int);
+	int x;
 
-	unsigned long long u;
+	x = print_no(pnt);
+	return (x);
+}
 
-	if (w < 0)
-	{
-		putchar_c('-');
-		x++;
-		u = -(unsigned int)w;
-	}
-	else
-	{
-		u = w;
-	}
-	x += print_num(u, 10, "0123456789");
-	return (conv_spc(format, pnt, x));
+/**
+ * conv_unsign_int - print unsighted num
+ * @pnt: va_list
+ * Return: int value
+ */
+
+int unsign_int(va_list pnt)
+{
+	unsigned int num;
+
+	num = va_arg(pnt, unsigned int);
+
+	if (num == 0)
+		return (print_unsign(num));
+
+	if (num < 1)
+		return (-1);
+	return (print_unsign(num));
 }

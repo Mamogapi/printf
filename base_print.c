@@ -1,88 +1,183 @@
 #include "main.h"
 
 /**
- * conv_oct - convert octal number
- * @format: string variable
- * @pnt: va_list
- * @x: integer variable
- * Return: integer
+ * val_check - check for hex and HEX
+ * @num: int number
+ * @x: char variable
+ * Return: Ascii
  */
 
-int conv_oct(const char *format, va_list pnt, int x)
+int val_check(int num, char x)
 {
-	unsigned int y = va_arg(pnt, unsigned int);
+	char *hex = "abcdef";
 
-	x += print_num(y, 8, "01234567");
-	return (conv_spc(format, ap, x));
+	char *Hex = "ABCDEF";
+
+	num = num - 10;
+	if (x == 'x')
+		return (hex[num]);
+	else
+		return (Hex[num]);
+	return (0);
 }
 
 /**
- * conv_unsign_int - convert unsigned int number
- * @format: string variable
+ * conv_oct - convert octal number
  * @pnt: va_list
- * @x: integer variable
  * Return: integer
  */
 
-int conv_unsign_int(const char *format, va_list pnt, int x)
+int conv_oct(va_list pnt)
 {
+	int x;
+	char *num, *rev_s;
 	unsigned int y = va_arg(pnt, unsigned int);
 
-	x += print_num(y, 10, "0123456789");
-	return (conv_spc(format, ap, x));
+	if (y == 0)
+		return (putchar_c('0'));
+	if (y < 1)
+		return (-1);
+	x = print_num(y, 8);
+	num = malloc(sizeof(char) * x + 1);
+
+	if (num == NULL)
+		return (-1);
+	for (x = 0; y > 0; x++)
+	{
+		num[x] = (y % 8) + 48;
+		y = y / 8;
+	}
+	num[x] = '\0';
+	rev_s = rev_str(num);
+	if (rev_s == NULL)
+		return (-1);
+
+	putchar_n(rev_s);
+	free(num);
+	free(rev_s);
+	return (x);
 }
 
 /**
  * conv_hex - convert hex number
- * @format: string variable
  * @pnt: va_list
- * @x: integer variable
  * Return: integer
  */
 
-int conv_hex(const char *format, va_list pnt, int x)
+int conv_hex(va_list pnt)
 {
+	char *num, *rev_s;
+	int x, z;
 	unsigned int y = va_arg(pnt, unsigned int);
 
-	x += print_num(y, 16, "0123456789abcdef");
-	return (conv_spc(format, ap, x));
+	if (y == 0)
+		return (putchar_c('0'));
+	if (y < 1)
+		return (-1);
+	x = print_num(y, 16);
+	num = malloc(sizeof(char) * x + 1);
+	if (num == NULL)
+		return (-1);
+	for (x = 0; y > 0; x++)
+	{
+		z = y % 16;
+		if (z > 9)
+		{
+			z = val_hex(z, 'x');
+			num[x] = z;
+		}
+		else
+			num[x] = z + 48;
+		y = y / 16;
+	}
+	num[x] = '\0';
+	rev_s = rev_str(num);
+	if (rev_s == NULL)
+		return (-1);
+	putchar_n(rev_s);
+	free(num);
+	free(rev_s);
+	return (x);
 }
 
 /**
  * conv_HEX - convert hex number
- * @format: string variable
  * @pnt: va_list
- * @x: integer variable
  * Return: integer
  */
 
-int conv_HEX(const char *format, va_list pnt, int x)
+int conv_HEX(va_list pnt)
 {
+	char *num, *rev_s;
+	int x, z;
 	unsigned int y = va_arg(pnt, unsigned int);
 
-	x += print_num(y, 16, "0123456789ABCDEF");
-	return (conv_spc(format, ap, x));
+	if (y == 0)
+		return (putchar_c('0'));
+	if (y < 1)
+		return (-1);
+	x = print_num(y, 16);
+	num = malloc(sizeof(char) * x + 1);
+	if (num == NULL)
+		return (-1);
+	for (x = 0; y > 0; x++)
+	{
+		z = y % 16
+		if (z > 9)
+		{
+			z = val_hex(z, 'X');
+			num[x] = z;
+		}
+		else
+			num[x] = z + 48;
+		y = y / 16;
+	}
+	num[x] = '\0';
+	rev_s = rev_str(num);
+	if (rev_s == NULL)
+		return (-1);
+	putchar_n(rev_s);
+	free(num);
+	free(rev_s);
+	return (x);
+
 }
 
 /**
  * conv_bin - convert binary number
- * @format: string variable
  * @pnt: va_list
- * @x: integer variable
  * Return: integer
  */
-int conv_bin(const char *format, va_list pnt, int x)
-{
-	unsigned int w = 0, q, z = 1;
 
+int conv_bin(va_list pnt)
+{
+	char *num, *rev_s;
+	int x, z;
 	unsigned int y = va_arg(pnt, unsigned int);
 
-	while (y != 0)
+	if (y == 0)
+		return (putchar_c('0'));
+	if (y < 1)
+		return (-1);
+	x = print_num(y, 2);
+	num = malloc(sizeof(char) * x + 1);
+	if (num == NULL)
+		return (-1);
+
+	for (x = 0; y > 0; x++)
 	{
-		q = y % 2;
-		w = w + q * z;
-		z = z * 10;
+		if (y % 2 == 0)
+			num[x] = '0';
+		else
+			num[x] = '1';
 		y = y / 2;
 	}
-	putchar_c(y);
+	num[x] = '\0';
+	rev_s = rev_str(num);
+	if (rev_s == NULL)
+		return (-1);
+	putchar_n(rev_s);
+	free(num);
+	free(rev_s);
+	return (x);
 }

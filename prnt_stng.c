@@ -3,7 +3,6 @@
 /**
  * conv_rev - print the reversed string
  * @pnt: va_list
- *
  * Return: integer
  */
 
@@ -21,13 +20,13 @@ int conv_rev(va_list pnt)
 		return (-1);
 	for (x = 0; str1[x] != '\0'; x++)
 		putchar_c(str1[x]);
+	free(str1);
 	return (x);
 }
 
 /**
  * conv_rot - convert string to rot13
  * @pnt: va_list
- *
  * Return: converted string
  */
 
@@ -49,7 +48,7 @@ int conv_rot(va_list pnt)
 			if (str[x] == s1[z])
 			{
 				str[x] = s2[z];
-				putch_c(str[x]);
+				putchar_c(str[x]);
 				break;
 			}
 		}
